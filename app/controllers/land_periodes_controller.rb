@@ -1,0 +1,2 @@
+class LandPeriodesController < ApplicationController
+end
