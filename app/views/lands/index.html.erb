@@ -1,9 +1,18 @@
-<h1>Lands list goes here</h1>
-<%= button_to "New",  new_land_path, method: :get %>
-<ul>
-<% @lands.each do | land | %>
-  <li>
-  <%= land.name %>
-  </li>
-<% end %>
-</ul>
+
+<div class="container mt-5">
+  <h1>Find a country to lead!</h1>
+  <div class="grid">
+
+  <% @lands.each do | land | %>
+  <div class="card" style="width: 18rem;">
+    <img src="https://source.unsplash.com/random/200x150" class="card-img-to" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= land.name %></h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">See details</a>
+    </div>
+  </div>
+  <% end %>
+
+  </div>
+</div>
