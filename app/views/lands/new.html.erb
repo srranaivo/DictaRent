@@ -1,12 +1,8 @@
 <%= simple_form_for(@land) do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.input :area %>
+  <%= f.input :flag %>
+  <%= f.input :population %>
   <%= f.submit class: "btn btn-primary" %>
-  <%= f.input :description %>
-  t.string "name"
-    t.integer "area"
-    t.string "flag"
-    t.string "description"
-    t.integer "population"
-    t.bigint "user_id"
 <% end %>
