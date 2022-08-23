@@ -16,7 +16,6 @@ class LandsController < ApplicationController
     if @land.save
       redirect_to lands_path
     else
-      puts "toto"
       render :new, status: :unprocessable_entity
     end
   end
