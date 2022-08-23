@@ -1,0 +1,9 @@
+<h1>Lands Periods</h1>
+<%= simple_form_for(@land_periodes) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :area %>
+  <%= f.input :flag %>
+  <%= f.input :population %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
