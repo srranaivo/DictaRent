@@ -23,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_22_163221) do
   end
 
   create_table "land_periodes", force: :cascade do |t|
-    t.datetime "starts_the"
-    t.datetime "ends_the"
+    t.date "starts_the"
+    t.date "ends_the"
     t.bigint "land_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
