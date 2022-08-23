@@ -1,0 +1,2 @@
+class LandPeriode < ApplicationRecord
+end
