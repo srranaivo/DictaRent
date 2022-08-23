@@ -12,9 +12,11 @@ class LandsController < ApplicationController
 
   def create
     @land = Land.new(land_params)
+    @land.user = current_user
     if @land.save
       redirect_to lands_path
     else
+      puts "toto"
       render :new, status: :unprocessable_entity
     end
   end
