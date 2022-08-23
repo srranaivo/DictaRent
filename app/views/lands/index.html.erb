@@ -1,5 +1,5 @@
 <h1>Lands list goes here</h1>
-<%= button_to "New", action: "new" %>
+<%= button_to "New",  new_land_path, method: :get %>
 <ul>
 <% @lands.each do | land | %>
   <li>
