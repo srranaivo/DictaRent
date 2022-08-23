@@ -1,8 +1,10 @@
-<%= simple_form_for(@land) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :area %>
-  <%= f.input :flag %>
-  <%= f.input :population %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<div class="container mt-5">
+  <%= simple_form_for(@land) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :area %>
+    <%= f.input :flag %>
+    <%= f.input :population %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
