@@ -7,12 +7,14 @@ class LandPeriodesController < ApplicationController
   end
 
   def new
+    @land = Land.find(params[:land_id])
     @land_periodes = LandPeriode.new
   end
 
   def create
+    puts "create methode"
     @land_periodes = LandPeriode.new(land_periodes_params)
-    @land_periodes.user = current_user
+    @land_periodes.land_id = current_user.land
     if @land_periodes.save
       redirect_to land_periodes_path
     else
@@ -23,7 +25,7 @@ class LandPeriodesController < ApplicationController
 private
 
 def land_periodes_params
-  params.require(:land_periodes).permit(:starts_the, :ends_the)
+  params.require(:land_periode).permit(:starts_the, :ends_the)
 end
 
 #########
