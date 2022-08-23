@@ -1,0 +1,14 @@
+
+<div class="container">
+
+  <h1>Select your country</h1>
+  <select class="form-select" aria-label="Default select example">
+    <option selected>Open this select menu</option>
+    <% @lands.each do | country | %>
+      <option value="<%= country.name %>"> <%= country.name %></option>
+    <% end %>
+  </select>
+
+  <%= button_to "Validate", "#", method: :get, class:'btn btn-primary btn-md px-4 me-md-4' %>
+
+</div>

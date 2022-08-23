@@ -12,7 +12,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li>
-          <%= button_to "Propose a land", new_land_path, method: :get, class:'btn btn-primary btn-md px-4 me-md-4' %>
+          <%= button_to "Rent your Land", lands_select_path, method: :get, class:'btn btn-primary btn-md px-4 me-md-4' %>
           </li>
           <li>
           <%= link_to 'list of lands', lands_path, class:'nav-link'%>

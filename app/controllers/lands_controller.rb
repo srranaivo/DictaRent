@@ -1,6 +1,6 @@
 class LandsController < ApplicationController
   def index
-    @lands = Land.all
+    @lands = Land.where.not(user: nil)
   end
 
   def show
@@ -8,6 +8,14 @@ class LandsController < ApplicationController
 
   def new
     @land = Land.new
+  end
+
+  def select
+    @lands = Land.where(user: nil)
+  end
+
+  def update
+    @land
   end
 
   def create
