@@ -11,14 +11,20 @@ class LandsController < ApplicationController
   end
 
   def select
+    @land = Land
     @lands = Land.where(user: nil)
   end
 
-  def update
-    @land
+  def attach_owner
+    @land = Land.find(params[:Land]['user_id'])
+    p @land
+    @land.update(user: current_user)
   end
 
   def create
+    p ' '
+    p 'create method'
+    p ' '
     @land = Land.new(land_params)
     @land.user = current_user
     if @land.save

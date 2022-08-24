@@ -2,13 +2,13 @@
 <div class="container">
 
   <h1>Select your country</h1>
-  <select class="form-select" aria-label="Default select example">
-    <option selected>Open this select menu</option>
-    <% @lands.each do | country | %>
-      <option value="<%= country.name %>"> <%= country.name %></option>
-    <% end %>
-  </select>
 
-  <%= button_to "Validate", "#", method: :get, class:'btn btn-primary btn-md px-4 me-md-4' %>
+  <%= form_tag land_attach_owner_path, method: :put do %>
+    <%= collection_select @land, :user_id, @lands, :id, :name %>
+    <%= submit_tag "Validate"%>
+  <% end %>
 
+
+
+  <%# <%= button_to "Validate", land_path(200), method: :put, class:'btn btn-primary btn-md px-4 me-md-4' %>
 </div>
