@@ -4,4 +4,8 @@ class User < ApplicationRecord
   has_one :land
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def dictator?
+    return current_user.land ? true : false
+  end
 end
