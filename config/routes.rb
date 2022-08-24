@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get "lands/select", to: "lands#select"
+  put "lands/select", to: "lands#attach_owner", as: 'land_attach_owner'
+
 
   resources :lands do
     resources :bookings, only: [:new, :create]
