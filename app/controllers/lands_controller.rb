@@ -1,6 +1,6 @@
 class LandsController < ApplicationController
   def index
-    @lands = Land.where.not(user: nil)
+    @lands = Land.where.not(user: nil, user: current_user)
   end
 
   def show
@@ -9,7 +9,7 @@ class LandsController < ApplicationController
     p ' '
     p @periodes
     p ' '
-    @status = current_user.land ? true : false
+    @status = current_user.land == @land ? true : false
 
   end
 
