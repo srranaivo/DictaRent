@@ -14,6 +14,8 @@ require "open-uri"
 countries = URI.open(URL).read
 countries_parse = JSON.parse(countries)
 
+Land.all.destroy
+
 countries_parse.each do |country|
   country_name = country['name']['common']
   country_area = country['area']
