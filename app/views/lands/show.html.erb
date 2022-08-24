@@ -1,15 +1,25 @@
-<h1><%= @land.name %></h1>
+<h1>Summary</h1>
+
+<h2><%= @land.name %></h2>
 <ul class="list-group"><% @periodes.each do | periode | %>
-<li class="list-group-item">
-  <%= periode.starts_the %>
-  <%= periode.ends_the %>
-</li>
+<div class='card mb-2 mt-2'>
+          <div class="card-body d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
+              <p><strong><%= periode.starts_the %></strong></p>
+              <p>-</p>
+              <p><strong><%= periode.ends_the %></strong></p>
+            </div>
+          </div>
+        </div>
 <% end %>
+
+
 
 
 
 <% if @status %>
   <p>Je suis un dictateur</p>
+  <%= link_to "Add periodes",new_land_land_periode_path(current_user.land.id ), class: "btn btn-primary" %>
 <% else %>
   <p>Je suis un candidat</p>
 <% end %>

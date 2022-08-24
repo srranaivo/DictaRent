@@ -23,6 +23,8 @@ class LandPeriodesController < ApplicationController
     end
   end
 
+
+
   private
 
   def land_periodes_params
