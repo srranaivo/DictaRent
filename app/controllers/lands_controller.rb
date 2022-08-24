@@ -10,6 +10,7 @@ class LandsController < ApplicationController
     p @periodes
     p ' '
     @status = current_user.land ? true : false
+
   end
 
   def new
@@ -28,9 +29,6 @@ class LandsController < ApplicationController
   end
 
   def create
-    p ' '
-    p 'create method'
-    p ' '
     @land = Land.new(land_params)
     @land.user = current_user
     if @land.save
