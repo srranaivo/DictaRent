@@ -4,7 +4,7 @@
   <h1>Select your country</h1>
 
   <%= form_tag land_attach_owner_path, method: :put do %>
-    <%= collection_select @land, :user_id, @lands, :id, :name %>
+    <%= collection_select @land, :land_id, @lands, :id, :name %>
     <%= submit_tag "Validate"%>
   <% end %>
 
