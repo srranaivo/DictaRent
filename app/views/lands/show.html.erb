@@ -1,1 +1,16 @@
-<h1>Show land item</h1>
+<h1><%= @land.name %></h1>
+<ul class="list-group"><% @periodes.each do | periode | %>
+<li class="list-group-item">
+  <%= periode.starts_the %>
+  <%= periode.ends_the %>
+</li>
+<% end %>
+
+
+
+<% if @status %>
+  <p>Je suis un dictateur</p>
+<% else %>
+  <p>Je suis un candidat</p>
+<% end %>
+</ul>
