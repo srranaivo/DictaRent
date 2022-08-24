@@ -1,5 +1,5 @@
 <h1>Lands Periods</h1>
-<%= simple_form_for(@land_periodes) do |f| %>
+<%= simple_form_for([@land, @land_periodes]) do |f| %>
   <%= f.input :starts_the %>
   <%= f.input :ends_the %>
   <%= f.submit class: "btn btn-primary" %>
