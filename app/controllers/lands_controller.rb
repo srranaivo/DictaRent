@@ -16,7 +16,7 @@ class LandsController < ApplicationController
   end
 
   def attach_owner
-    @land = Land.find(params[:Land]['user_id'])
+    @land = Land.find(params[:Land]['land_id'])
     p @land
     @land.update(user: current_user)
   end
