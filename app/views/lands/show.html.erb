@@ -1,18 +1,21 @@
 <div class="container">
 <h1><%= @land.name %></h1>
-<ul class="list-group"><% @periodes.each do | periode | %>
-<div class='card mb-2 mt-2'>
-          <div class="card-body d-flex justify-content-between">
-            <div class="d-flex justify-content-between">
-              <p><strong><%= periode.starts_the %></strong></p>
-              <p>-</p>
-              <p><strong><%= periode.ends_the %></strong></p>
-            </div>
-          </div>
-        </div>
-<% end %>
 
 <% if @status %>
+  <div class="container">
+    <% @periodes.each do | periode | %>
+      <div class='card mb-2 mt-2'>
+        <div class="card-body d-flex justify-content-between">
+          <div class="d-flex justify-content-between">
+            <p><strong><%= periode.starts_the %></strong></p>
+            <p>-</p>
+            <p><strong><%= periode.ends_the %></strong></p>
+          </div>
+          <h3>Not booked yet</h3>
+        </div>
+      </div>
+  <% end %>
+  <div>
   <%= link_to "Add periodes",new_land_land_periode_path(current_user.land.id ), class: "btn btn-primary" %>
 <% else %>
   <div class="container">
@@ -27,6 +30,10 @@
             <button class='btn btn-primary'>Rent</button>
           </div>
         </div>
+    <% end %>
+    <% if @periodes.length < 1 %>
+    <p>Sorry no rental periods yet ... </p>
+    <h1>🤔</h1>
     <% end %>
   </div>
 
