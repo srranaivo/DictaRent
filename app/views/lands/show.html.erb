@@ -1,16 +1,28 @@
+<div class="container">
 <h1><%= @land.name %></h1>
-<ul class="list-group"><% @periodes.each do | periode | %>
-<li class="list-group-item">
-  <%= periode.starts_the %>
-  <%= periode.ends_the %>
-</li>
-<% end %>
-
-
 
 <% if @status %>
   <p>Je suis un dictateur</p>
+
 <% else %>
-  <p>Je suis un candidat</p>
+  <div class="container">
+    <% @periodes.each do |periode| %>
+        <div class='card mb-2 mt-2'>
+          <div class="card-body d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
+              <p><strong><%= periode.starts_the %></strong></p>
+              <p>-</p>
+              <p><strong><%= periode.ends_the %></strong></p>
+            </div>
+            <button class='btn btn-primary'>Rent</button>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+
+
+
 <% end %>
 </ul>
+</div>

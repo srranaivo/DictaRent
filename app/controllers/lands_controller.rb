@@ -6,6 +6,9 @@ class LandsController < ApplicationController
   def show
     @land = Land.find(params[:id])
     @periodes = @land.land_periodes
+    p ' '
+    p @periodes
+    p ' '
     @status = current_user.land ? true : false
   end
 
