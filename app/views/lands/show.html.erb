@@ -28,8 +28,12 @@
               <p>-</p>
               <p><strong><%= periode.ends_the %></strong></p>
             </div>
-           <p> <%= periode.id %></p>
-            <%=  button_to "Rent", land_periode_bookings_path(periode), class:'btn btn-primary' %>
+            <% if periode.already_rent_by_user?(current_user) %>
+              <p><strong><%= periode.bookings.find_by(user: current_user).status %></strong></p>
+            <% else %>
+              <% @class_btn = periode.available? ? 'btn btn-primary' : 'btn btn-primary disabled' %>
+              <%= button_to "Rent", land_periode_bookings_path(periode), class: @class_btn %>
+            <% end %>
           </div>
         </div>
     <% end %>

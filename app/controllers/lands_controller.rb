@@ -6,11 +6,7 @@ class LandsController < ApplicationController
   def show
     @land = Land.find(params[:id])
     @periodes = @land.land_periodes
-    p ' '
-    p @periodes
-    p ' '
     @status = current_user.land == @land ? true : false
-
   end
 
   def new
@@ -37,12 +33,10 @@ class LandsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 private
 
 def land_params
   params.require(:land).permit(:name, :description)
 end
-
 
 end

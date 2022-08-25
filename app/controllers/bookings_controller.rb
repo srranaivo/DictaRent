@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   def index
-    @bookings = Booking.all
+    @bookings = Booking.all.where(user: current_user.id)
   end
 
   def show
@@ -11,14 +11,17 @@ class BookingsController < ApplicationController
   end
 
   def create
-    p " "
-    p params
-    p " "
     @booking = Booking.new
     @booking.user = current_user
     @land_periode = LandPeriode.find(params[:land_periode_id])
-    p @land_periode.inspect
     @booking.land_periode = @land_periode
+
+    p '-------------------------------------------------'
+    p @land_periode.already_rent_by_user?(current_user.id)
+    p '-------------------------------------------------'
+
+    return if !@land_periode.available? || @land_periode.already_rent_by_user?(current_user.id)
+
     if @booking.save
       redirect_to lands_path
     else
