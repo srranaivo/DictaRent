@@ -14,6 +14,9 @@
           <li class='me-md-4'>
           <%= link_to 'list of lands for rent', lands_path, class:'nav-link'%>
           </li>
+          <li class='me-md-4'>
+          <%= link_to 'My bookings', bookings_path, class:'nav-link'%>
+          </li>
           <% unless current_user.land ? true : false %>
           <li>
           <%= button_to "Rent your Land", lands_select_path, method: :get, class:'btn btn-primary btn-md px-4 me-md-4' %>
