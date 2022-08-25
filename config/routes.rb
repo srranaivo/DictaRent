@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   # root "articles#index"
   get "lands/select", to: "lands#select"
   put "lands/select", to: "lands#attach_owner", as: 'land_attach_owner'
+  get "bookings/validation", to: "bookings#validation"
+  put "bookings/validation", to: "bookings#attach_periode", as: 'booking_attach_periode'
+
+
 
 
   resources :lands do

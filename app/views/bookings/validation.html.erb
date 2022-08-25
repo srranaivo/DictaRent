@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h1>Your request has been taken into account</h1>
+  <p>You will receive an answer as soon as possible</p>
+
+  <%= form_tag booking_attach_periode_path, method: :put do %>
+    <%= collection_select @booking, :booking_id, @bookings, :id, :status %>
+    <%= submit_tag "Add date"%>
+    <%= submit_tag "Back to my page"%>
+  <% end %>
+
+
+</div>
+
+#mettre le pays demandé à la location
+#mettre la période demandée
+#faire 1 bouton pour revenir soit sur sa page perso soit sur la liste des pays à louer

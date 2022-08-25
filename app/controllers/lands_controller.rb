@@ -9,7 +9,7 @@ class LandsController < ApplicationController
     p ' '
     p @periodes
     p ' '
-    @status = current_user.land == @land ? true : false
+    @status = current_user.land == @land
 
   end
 
