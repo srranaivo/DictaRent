@@ -28,7 +28,8 @@
               <p>-</p>
               <p><strong><%= periode.ends_the %></strong></p>
             </div>
-            <button class='btn btn-primary'>Rent</button>
+           <p> <%= periode.id %></p>
+            <%=  button_to "Rent", land_periode_bookings_path(periode), class:'btn btn-primary' %>
           </div>
         </div>
     <% end %>
