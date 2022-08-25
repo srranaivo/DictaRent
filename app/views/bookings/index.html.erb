@@ -1,1 +1,17 @@
-<h1>Booking list<h1>
+<h1 class='mb-4'>Booking list</h1>
+
+<% if @bookings.length > 0 %>
+  <% @bookings.each do | booking | %>
+    <div class="card mb-2">
+      <div class="card-body d-flex justify-content-between">
+        <h4 class="card-title fw-bold"><%= booking.land_periode.starts_the %></h4>
+        <h4 class="card-title fw-bold"><%= booking.land_periode.ends_the %></h4>
+        <h4 class="card-title "><%= booking.land_periode.land.name %></h4>
+        <h4 class="card-title "><%= booking.land_periode.land.user.email %></h4>
+        <h4 class="card-title fw-bold">Status: <%= booking.status %></h4>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>You don't have bookings yet ...</p>
+<% end %>
