@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
     resources :land_periodes, only: [:new, :create]
   end
-  resources :bookings, only: [:show, :index]
+  resources :bookings, only: [:show, :index, :update]
   resources :land_periodes, only: [:index] do
     resources :bookings, only: [:create]
   end

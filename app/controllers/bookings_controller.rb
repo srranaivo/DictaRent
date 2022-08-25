@@ -33,6 +33,11 @@ class BookingsController < ApplicationController
   # <%= if @land_periode.booked_by_owner?%>
 
   def update
+    p 'update booking'
+    p params[:status]
+    @booking = Booking.find(params[:id])
+    @booking.update(status: params[:status])
+    redirect_to land_path(current_user.land.id)
   end
 
   private
