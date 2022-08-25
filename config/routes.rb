@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   put "lands/select", to: "lands#attach_owner", as: 'land_attach_owner'
 
 
+
+
   resources :lands do
     resources :bookings, only: [:new, :create]
     resources :land_periodes, only: [:new, :create]

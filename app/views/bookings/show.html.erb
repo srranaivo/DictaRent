@@ -1,1 +1,6 @@
-<h1>Booking</h1>
+<h1><%= @booking.status %></h1>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>

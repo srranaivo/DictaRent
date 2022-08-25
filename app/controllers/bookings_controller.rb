@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+
   def new
   end
 
@@ -23,12 +24,13 @@ class BookingsController < ApplicationController
     return if !@land_periode.available? || @land_periode.already_rent_by_user?(current_user.id)
 
     if @booking.save
-      redirect_to lands_path
+      flash[:success] = "Your request has been into concern."
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = "Something went wrong, try again."
     end
+    redirect_to land_path(@land_periode.land)
   end
-
+  # <%= if @land_periode.booked_by_owner?%>
 
   def update
   end
