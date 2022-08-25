@@ -26,16 +26,6 @@ class BookingsController < ApplicationController
   end
   # <%= if @land_periode.booked_by_owner?%>
 
-  def validation
-    @booking = Booking
-    @bookings = Booking.where(user: nil)
-  end
-
-  def attach_periode
-    @booking = Booking.find(params[:Booking]['booking_id'])
-    @booking.update(user: current_user)
-  end
-
   def update
   end
 
