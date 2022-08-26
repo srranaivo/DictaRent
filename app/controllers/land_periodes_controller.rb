@@ -6,7 +6,6 @@ class LandPeriodesController < ApplicationController
   def show
   end
 
-
   def new
     @land = Land.find(params[:land_id])
     @land_periodes = LandPeriode.new
