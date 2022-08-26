@@ -15,11 +15,12 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @booking.user = current_user
     @land_periode = LandPeriode.find(params[:land_periode_id])
-    @booking.land_periode = @land_periode
 
-    p '-------------------------------------------------'
-    p @land_periode.already_rent_by_user?(current_user.id)
-    p '-------------------------------------------------'
+    puts @land_periode.inspect
+    @land_periode.update(read: false)
+    puts @land_periode.inspect
+
+    @booking.land_periode = @land_periode
 
     return if !@land_periode.available? || @land_periode.already_rent_by_user?(current_user.id)
 
@@ -38,6 +39,10 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.update(status: params[:status])
     redirect_to land_path(current_user.land.id)
+  end
+
+  def accepted_booking?
+
   end
 
   private

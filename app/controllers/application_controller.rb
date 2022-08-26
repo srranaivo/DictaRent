@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_notification
 
   add_flash_types :info, :error, :success
 
@@ -14,5 +15,25 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+
+  private
+
+  def set_notification
+    unless current_user&.dictator?
+      @notification = nil
+      return
+    end
+    land_periodes_for_land = current_user.land.land_periodes
+    land_periodes_for_land.each do | periode |
+
+      p 'periode is'
+      p periode.read
+      p ''
+
+      if !periode.read
+        @notification = 1
+      end
+    end
   end
 end

@@ -8,6 +8,6 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   def dictator?
-    return current_user.land ? true : false
+    land.present?
   end
 end
