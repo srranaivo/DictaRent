@@ -10,3 +10,12 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+#custom-btn {
+  padding: 0;
+}
+
+#custom-btn:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
