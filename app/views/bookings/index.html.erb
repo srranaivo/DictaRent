@@ -1,14 +1,20 @@
-<h1 class='mb-4'>Booking list</h1>
+  <div class="d-flex align-items-center justify-content-between">
+    <h1 class='mt-5 mb-5'>My Bookings</h1>
+  </div>
 
 <% if @bookings.length > 0 %>
   <% @bookings.each do | booking | %>
-    <div class="card mb-2">
-      <div class="card-body d-flex justify-content-between">
-        <h4 class="card-title fw-bold flex-column">From: <%= booking.land_periode.starts_the.strftime('%a %d %b %Y') %></h4>
-        <h4 class="card-title fw-bold flex-column">To: <%= booking.land_periode.ends_the.strftime('%a %d %b %Y') %></h4>
-        <h4 class="card-title "><%= booking.land_periode.land.name %></h4>
-        <h4 class="card-title "><%= booking.land_periode.land.user.name %></h4>
-        <h4 class="card-title fw-bold">Status: <%= booking.status %></h4>
+    <% @booking_status = booking.status  %>
+    <% @class_style = 'background-color: #9cf0b2' if @booking_status == 'accepted'%>
+    <% @class_style = 'background-color: #f5e3a4' if @booking_status == 'pending'%>
+    <% @class_style = 'background-color: #e3e3e3' if @booking_status == 'rejected'%>
+    <div class="card mb-2 mt-2">
+      <div class="card-body d-flex justify-content-between"  style="<%= @class_style %>">
+        <h5 class="card-title fw-bold flex-column">From: <%= booking.land_periode.starts_the.strftime('%a %d %b %Y') %></h5>
+        <h5 class="card-title fw-bold flex-column">To: <%= booking.land_periode.ends_the.strftime('%a %d %b %Y') %></h5>
+        <h5 class="card-title "><%= booking.land_periode.land.name %></h5>
+        <h5 class="card-title "><%= booking.land_periode.land.user.name %></h5>
+        <h5 class="card-title fw-bold"><%= booking.status %></h5>
       </div>
     </div>
   <% end %>
