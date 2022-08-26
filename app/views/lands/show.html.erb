@@ -1,49 +1,103 @@
-<div class="container">
-<h1><%= @land.name %></h1>
-<h2>Owned by : <%= User.find(@land.user_id)[:email] %></h2>
+<% @owner = User.find(@land.user_id)[:email] %>
+<div class="container mb-5">
+<div class="d-flex align-items-center">
+  <img src="<%= @land.flag%>" alt="flag" width="auto" height="150px">
+  <div class='ms-4'>
+    <h1 class="mt-4"><%= @land.name %></h1>
+    <h5>Owned by : <%= @owner == current_user.email ? 'you' : @owner %></h5>
+  </div>
+</div>
 
 <% if @status %>
-  <div class="container">
+  <div class="d-flex align-items-center justify-content-between">
+    <h1 class='mt-5 mb-5'>My rentals periods</h1>
+    <%= link_to "Add periodes",new_land_land_periode_path(current_user.land.id ), class: "btn btn-primary" %>
+  </div>
     <% @periodes.each do | periode | %>
+      <div class='mb-2 mt-2'>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-around">
+            <h5 class='me-2'>From:</h5>
+            <h5 class='me-2'><strong><%= periode.starts_the %></strong></h5>
+            <h5 class='me-2'> to: </h5>
+            <h5 class='me-2'><strong><%= periode.ends_the %></strong></h5>
+          </div>
+        </div>
+      </div>
+      <% periode.bookings.each do |booking| %>
+        <% if booking.status == 'pending' %>
+          <div class="card">
+            <div class="d-flex flex-row justify-content-between card-body">
+              <p>Offer from: <strong><%= booking.user.email %></strong></p>
+              <div class='d-flex'>
+                <%= button_to "Accept", booking_path(booking.id), method: :put, params: {status: 'accepted'}, class: "btn btn-outline-success me-4" %>
+                <%= button_to "Reject", booking_path(booking.id), method: :put, params: {status: 'rejected'}, class: "btn btn-outline-warning" %>
+              </div>
+            </div>
+          </div>
+        <% elsif booking.status == 'accepted' %>
+          <div class="card" style="background-color: #9cf0b2">
+            <div class="d-flex flex-row justify-content-between card-body">
+              <p>Offer from: <strong><%= booking.user.email %></strong></p>
+              <div>
+                <%= button_to "Cancel", booking_path(booking.id), method: :put, params: {status: 'pending'}, class: "btn btn-outline-dark" %>
+              </div>
+            </div>
+          </div>
+        <% elsif booking.status == 'rejected' %>
+          <div class="card" style="background-color: #e3e3e3">
+            <div class="d-flex flex-row justify-content-between card-body">
+              <p>Offer from: <strong><%= booking.user.email %></strong></p>
+              <div>
+                <%= button_to "Cancel", booking_path(booking.id), method: :put, params: {status: 'pending'}, class: "btn btn-outline-dark" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <% if periode.bookings.length < 1 %>
+          <div class="card" style="background-color: transparent">
+            <div class="d-flex flex-row justify-content-between card-body">
+              <p>No offer yet... </p>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
+<% else %>
+  <div class="d-flex align-items-center justify-content-between">
+    <h1 class='mt-5 mb-5'>My rentals periods</h1>
+  </div>
+  <% @periodes.each do |periode| %>
+  <% @class_style = '' %>
+  <% if periode.already_rent_by_user?(current_user) %>
+    <% @booking_status = periode.bookings.find_by(user: current_user).status  %>
+    <% @class_style = 'background-color: #9cf0b2' if @booking_status == 'accepted'%>
+    <% @class_style = 'background-color: #f5e3a4' if @booking_status == 'pending'%>
+    <% @class_style = 'background-color: #e3e3e3' if @booking_status == 'rejected'%>
+  <% end %>
       <div class='card mb-2 mt-2'>
-        <div class="card-body d-flex justify-content-between">
+        <div class="card-body d-flex justify-content-between" style="<%= @class_style %>">
           <div class="d-flex justify-content-between">
             <p><strong><%= periode.starts_the %></strong></p>
             <p>-</p>
             <p><strong><%= periode.ends_the %></strong></p>
           </div>
-          <h3>Not booked yet</h3>
+
+          <% if periode.already_rent_by_user?(current_user) %>
+            <p><strong><%= @booking_status %></strong></p>
+          <% else %>
+            <% @class_btn = periode.available? ? 'btn btn-primary' : 'btn btn-primary disabled' %>
+            <%= button_to "Rent", land_periode_bookings_path(periode), class: @class_btn, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+          <% end %>
+
         </div>
       </div>
   <% end %>
-  <div>
-  <%= link_to "Add periodes",new_land_land_periode_path(current_user.land.id ), class: "btn btn-primary" %>
-<% else %>
-  <div class="container">
-    <% @periodes.each do |periode| %>
-        <div class='card mb-2 mt-2'>
-          <div class="card-body d-flex justify-content-between">
-            <div class="d-flex justify-content-between">
-              <p><strong><%= periode.starts_the %></strong></p>
-              <p>-</p>
-              <p><strong><%= periode.ends_the %></strong></p>
-            </div>
+  <% if @periodes.length < 1 %>
+  <p>Sorry no rental periods yet ... </p>
+  <h1>🤔</h1>
+  <% end %>
 
-            <% if periode.already_rent_by_user?(current_user) %>
-              <p><strong><%= periode.bookings.find_by(user: current_user).status %></strong></p>
-            <% else %>
-              <% @class_btn = periode.available? ? 'btn btn-primary' : 'btn btn-primary disabled' %>
-              <%= button_to "Rent", land_periode_bookings_path(periode), class: @class_btn, form: { data: { turbo_confirm: 'Are you sure?' } } %>
-            <% end %>
-
-          </div>
-        </div>
-    <% end %>
-    <% if @periodes.length < 1 %>
-    <p>Sorry no rental periods yet ... </p>
-    <h1>🤔</h1>
-    <% end %>
-  </div>
 
 <% end %>
 </ul>
