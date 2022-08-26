@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_133645) do
     t.bigint "land_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
     t.boolean "read", default: true
     t.index ["land_id"], name: "index_land_periodes_on_land_id"
   end
