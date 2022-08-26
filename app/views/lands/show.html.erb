@@ -1,10 +1,10 @@
-<% @owner = User.find(@land.user_id)[:email] %>
+<% @owner = User.find(@land.user_id)[:name] %>
 <div class="container mb-5">
 <div class="d-flex align-items-center">
   <img src="<%= @land.flag%>" alt="flag" width="auto" height="150px">
   <div class='ms-4'>
     <h1 class="mt-4"><%= @land.name %></h1>
-    <h5>Owned by : <%= @owner == current_user.email ? 'you' : @owner %></h5>
+    <h5>Owned by : <%= @owner == current_user.name ? 'you' : @owner %></h5>
   </div>
 </div>
 
@@ -28,7 +28,7 @@
         <% if booking.status == 'pending' %>
           <div class="card">
             <div class="d-flex flex-row justify-content-between card-body">
-              <p>Offer from: <strong><%= booking.user.email %></strong></p>
+              <p>Offer from: <strong><%= booking.user.name %></strong></p>
               <div class='d-flex'>
                 <%= button_to "Accept", booking_path(booking.id), method: :put, params: {status: 'accepted'}, class: "btn btn-outline-success me-4" %>
                 <%= button_to "Reject", booking_path(booking.id), method: :put, params: {status: 'rejected'}, class: "btn btn-outline-warning" %>
@@ -38,7 +38,7 @@
         <% elsif booking.status == 'accepted' %>
           <div class="card" style="background-color: #9cf0b2">
             <div class="d-flex flex-row justify-content-between card-body">
-              <p>Offer from: <strong><%= booking.user.email %></strong></p>
+              <p>Offer from: <strong><%= booking.user.name %></strong></p>
               <div>
                 <%= button_to "Cancel", booking_path(booking.id), method: :put, params: {status: 'pending'}, class: "btn btn-outline-dark" %>
               </div>
@@ -47,7 +47,7 @@
         <% elsif booking.status == 'rejected' %>
           <div class="card" style="background-color: #e3e3e3">
             <div class="d-flex flex-row justify-content-between card-body">
-              <p>Offer from: <strong><%= booking.user.email %></strong></p>
+              <p>Offer from: <strong><%= booking.user.name %></strong></p>
               <div>
                 <%= button_to "Cancel", booking_path(booking.id), method: :put, params: {status: 'pending'}, class: "btn btn-outline-dark" %>
               </div>
