@@ -7,6 +7,12 @@ class LandsController < ApplicationController
     @land = Land.find(params[:id])
     @periodes = @land.land_periodes
     @status = current_user.land == @land
+
+    return unless @land == current_user.land
+    @periodes.each do |periode|
+      periode.update(read: true)
+    end
+
   end
 
   def new
@@ -15,13 +21,13 @@ class LandsController < ApplicationController
 
   def select
     @land = Land
-    @lands = Land.where(user: nil)
+    @lands = Land.where(user: nil).order('name ASC')
   end
 
   def attach_owner
     @land = Land.find(params[:Land]['land_id'])
-    p @land
     @land.update(user: current_user)
+    redirect_to land_path(@land)
   end
 
   def create

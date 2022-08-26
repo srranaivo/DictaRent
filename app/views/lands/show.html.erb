@@ -11,7 +11,7 @@
 <% if @status %>
   <div class="d-flex align-items-center justify-content-between">
     <h1 class='mt-5 mb-5'>My rentals periods</h1>
-    <%= link_to "Add periodes",new_land_land_periode_path(current_user.land.id ), class: "btn btn-primary" %>
+    <%= link_to "Add periodes",new_land_land_periode_path(current_user.land), class: "btn btn-primary" %>
   </div>
     <% @periodes.each do | periode | %>
     # accordéon
@@ -34,8 +34,8 @@
             <div class="d-flex flex-row justify-content-between card-body">
               <p>Offer from: <strong><%= booking.user.name %></strong></p>
               <div class='d-flex'>
-                <%= button_to "Accept", booking_path(booking.id), method: :put, params: {status: 'accepted'}, class: "btn btn-outline-success me-4" %>
-                <%= button_to "Reject", booking_path(booking.id), method: :put, params: {status: 'rejected'}, class: "btn btn-outline-warning" %>
+                <%= button_to "Accept", booking_path(booking), method: :put, params: {status: 'accepted'}, class: "btn btn-outline-success me-4" %>
+                <%= button_to "Reject", booking_path(booking), method: :put, params: {status: 'rejected'}, class: "btn btn-outline-warning" %>
               </div>
             </div>
           </div>

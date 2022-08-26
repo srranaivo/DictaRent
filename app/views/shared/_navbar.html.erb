@@ -27,11 +27,12 @@
 
             <button id="custom-btn" type="button" class="btn position-relative nav-link">
               <%= link_to 'My land', land_path(current_user.land.id), method: :get, class:'btn btn-primary' %>
-
+              <% if @notification %>
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                99+
+                <%= @notification %>
                 <span class="visually-hidden">unread messages</span>
               </span>
+              <% end %>
             </button>
           </li>
 
