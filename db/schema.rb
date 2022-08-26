@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_08_26_133645) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,11 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_133645) do
     t.bigint "land_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.integer "price"
-
     t.boolean "read", default: true
-
     t.index ["land_id"], name: "index_land_periodes_on_land_id"
   end
 
@@ -48,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_133645) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  
+    t.integer "price"
     t.index ["user_id"], name: "index_lands_on_user_id"
   end
 
