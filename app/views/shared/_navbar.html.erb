@@ -22,9 +22,23 @@
           <%= button_to "Rent your Land", lands_select_path, method: :get, class:'btn btn-primary btn-md px-4 me-md-4' %>
           </li>
           <% else %>
+
           <li class='me-md-4'>
-            <%= link_to 'My lands', land_path(current_user.land.id), class:'nav-link'%>
+
+            <button id="custom-btn" type="button" class="btn position-relative nav-link">
+              <%= link_to 'My land', land_path(current_user.land.id), method: :get, class:'btn btn-primary' %>
+
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                99+
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
           </li>
+
+
+
+
+
           <% end %>
           <li class='nav-link me-md-4'>
             <%= current_user.name %>
